@@ -1,5 +1,5 @@
 
-import {  useSearchParams } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { message } from "@/atoms/Atoms";
@@ -20,9 +20,16 @@ const API_BASE_URL = import.meta.env.VITE_API_URL;
 const Transferemail = () => {
  const [amount,seta]=useState(0)
  const [email, setEmail] = useState("");
+ const n = useNavigate();
  const [description, setDescription] = useState("");
   const [mess, setMess] = useRecoilState(message);
- 
+  useEffect(() => {
+   if (!localStorage.getItem("token")) {
+          alert("login first");
+          n("/auth");
+          return;
+      }
+  }, []);
   const setter=(e)=>{
       seta(e.target.value)
     }

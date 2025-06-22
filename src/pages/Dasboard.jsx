@@ -10,10 +10,15 @@ const Dashboard = () => {
   const [filter, setFilter] = useState("");
   const [transactions, setTransactions] = useState([]);
   const timeoutRef = useRef(null);
-
+const userId = localStorage.getItem("userId");
   useEffect(() => {
     async function fetchData() {
       try {
+        if (!localStorage.getItem("token")) {
+          alert("login first");
+          n("/auth");
+          return;
+        }
         const token = localStorage.getItem("token");
         const headers = { authorization: "Bearer " + token };
 
@@ -52,7 +57,7 @@ const Dashboard = () => {
     }, 500);
   };
 
-  const userId = localStorage.getItem("userId");
+  
 
   return (
     <div className="min-h-screen px-4 md:px-6 py-10 bg-gradient-to-br from-white to-indigo-50 text-black">
