@@ -11,14 +11,15 @@ import { Input } from "../components/ui/input";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { message } from "../atoms/Atoms";
+import { isLoggedIn, message } from "../atoms/Atoms";
 import { useRecoilState } from "recoil";
+import { use } from "react";
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export const Loginup = () => {
   const navigate = useNavigate();
   const [mess, setMessage] = useRecoilState(message);
-
+  const [val,setisloging]=useRecoilState(isLoggedIn);
   const [userdata, setData] = useState({
     username: "",
     password: "",
@@ -84,6 +85,7 @@ export const Loginup = () => {
         setMessage("Login successful");
         localStorage.setItem("token", res.data.token);
          localStorage.setItem("userId", res.data.userid);
+        setisloging(true);
         navigate("/das");
       }
     } catch (err) {

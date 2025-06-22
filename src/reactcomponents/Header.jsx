@@ -2,16 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import About from "./About";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react"; // for icons
+import { Menu, X } from "lucide-react";
+import { useRecoilValue } from "recoil";
+import { isLoggedIn } from "@/atoms/Atoms";
 
 const Header = () => {
   const navigate = useNavigate();
   const [token, setToken] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const isLoggedInval =useRecoilValue(isLoggedIn);
   useEffect(() => {
-    setToken(localStorage.getItem("token"));
-  }, [token]);
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -57,27 +60,27 @@ const Header = () => {
 
       {/* Desktop Nav */}
       <nav className="hidden md:flex space-x-6 text-lg font-medium text-gray-700">
-        <Link to='/about' className="hover:underline underline-offset-4">
+        <Link to="/about" className="hover:underline underline-offset-4">
           About
         </Link>
         <Link to="/das" className="hover:underline underline-offset-4">
           Dashboard
         </Link>
-         <Link to="/transfer/email" className="hover:underline underline-offset-4">
-            Transfer
-          </Link>
+        <Link to="/transfer/email" className="hover:underline underline-offset-4">
+          Transfer
+        </Link>
       </nav>
 
       {/* Mobile Menu Icon */}
       <div className="md:hidden">
         <button onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <X className="w-6 h-6  text-black" /> : <Menu className="w-6 h-6 text-black" />}
+          {menuOpen ? <X className="w-6 h-6 text-black" /> : <Menu className="w-6 h-6 text-black" />}
         </button>
       </div>
 
       {/* Auth Buttons (Desktop) */}
       <div className="hidden md:flex items-center space-x-3">
-        {token ? (
+        {isLoggedInval ? (
           <Button onClick={handleLogout}>Logout</Button>
         ) : (
           <Button onClick={handleLogin}>Login</Button>
