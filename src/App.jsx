@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dasboard"
 import Transfer from "./pages/Transfer"
 import { RecoilRoot } from "recoil"
 import Transferemail from "./pages/Transferemail"
+import About from "./reactcomponents/About"
 
 function App() {
     const routes=createBrowserRouter([{
@@ -14,6 +15,9 @@ function App() {
             {
                 path:"/",
                 element:<Landing></Landing>
+            },{
+                path:"/about",
+                element:<About></About>
             },{
                 path:"/auth",
                 element:<Auth></Auth>

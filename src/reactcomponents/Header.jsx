@@ -57,9 +57,9 @@ const Header = () => {
 
       {/* Desktop Nav */}
       <nav className="hidden md:flex space-x-6 text-lg font-medium text-gray-700">
-        <div className="hover:underline underline-offset-4">
-          <About />
-        </div>
+        <Link to='/about' className="hover:underline underline-offset-4">
+          About
+        </Link>
         <Link to="/das" className="hover:underline underline-offset-4">
           Dashboard
         </Link>
