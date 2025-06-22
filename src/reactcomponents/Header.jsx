@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
-import About from "./About";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useRecoilValue } from "recoil";
@@ -90,7 +89,9 @@ const Header = () => {
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
         <div className="absolute top-16 right-6 w-48 bg-white border shadow-md rounded-lg flex flex-col space-y-2 p-4 z-50 md:hidden text-black">
-          <About />
+           <Link to="/about" className="hover:underline underline-offset-4">
+          About
+        </Link>
           <Link to="/das" onClick={() => setMenuOpen(false)}>
             Dashboard
           </Link>
