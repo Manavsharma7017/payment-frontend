@@ -1,5 +1,5 @@
 
-import {  useSearchParams } from "react-router-dom";
+import {  useNavigate, useSearchParams } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -18,6 +18,7 @@ import { Alertcom } from "../reactcomponents/Alertcom";
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 const Transfer = () => {
  const [amount,seta]=useState(0)
+ const n=useNavigate();
   const [description, setDescription] = useState("");
   const [searchParams] = useSearchParams();
   const to = searchParams.get("id");
@@ -55,7 +56,7 @@ const Transfer = () => {
       if (msg === "insufficent balance") setMess("Insufficient balance.");
       else if (msg === "invalid uuser") setMess("Invalid user.");
       else if (msg === "Transfer successful") setMess("Transfer successful.");
-      window.location.href = "/das"; // Redirect to dashboard after transfer
+      n("/das"); // Redirect to dashboard after transfer
     } catch (e) {
       setMess("Transfer failed. Try again.");
     }

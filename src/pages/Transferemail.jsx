@@ -62,7 +62,7 @@ const Transferemail = () => {
       if (msg === "insufficent balance") setMess("Insufficient balance.");
       else if (msg === "invalid uuser") setMess("Invalid user.");
       else if (msg === "Transfer successful") setMess("Transfer successful.");
-      window.location.href = "/das"; // Redirect to dashboard after transfer
+      n( "/das"); // Redirect to dashboard after transfer
     } catch (e) {
       setMess("Transfer failed. Try again.");
     }
