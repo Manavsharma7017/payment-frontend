@@ -14,6 +14,7 @@ import {
   TrendingUp
 } from 'lucide-react';
 import { ScrollArea } from '../components/ScrollArea';
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -52,10 +53,12 @@ const Landing = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <button className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300" onClick={() => window.location.href = '/auth'}>
+              <Link to="/auth">
+              <button className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300" >
                 Get Started Free
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
+              </Link>
               
             </div>
 
